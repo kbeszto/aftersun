@@ -137,8 +137,7 @@ redeploy on every `git push`:
 - **Build command:** `npm run build`
 - **Output directory:** `dist`
 
-This repo deploys to Cloudflare. `wrangler.jsonc` names the project
-(`kobepickled`) and points it at `dist/`; `.nvmrc` pins the build to Node 24.
+This repo deploys to Cloudflare. `wrangler.jsonc` points it at `dist/`; `.nvmrc` pins the build to Node 24.
 
 The editing loop is entirely local — you never edit anything in the Cloudflare
 dashboard:

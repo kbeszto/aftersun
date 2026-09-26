@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kobepickled.kobe-szeto.workers.dev/sitemap-index.xml
+Sitemap: https://aftersun.kobe-szeto.workers.dev/sitemap-index.xml

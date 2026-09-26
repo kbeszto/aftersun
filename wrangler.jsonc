@@ -1,8 +1,9 @@
 {
-  // The deployed project's name — this is what sets the *.workers.dev
-  // subdomain. Change it here, push, and Cloudflare deploys under the new
-  // name (the old one stays until you delete it in the dashboard).
-  "name": "kobepickled",
+  // Must match the Worker that Cloudflare's Git integration is bound to.
+  // Changing this does NOT rename the deployment — the dashboard binding
+  // wins. To actually change the name, delete the Worker in the dashboard
+  // and reconnect the repo under the new name, then update this.
+  "name": "aftersun",
   "compatibility_date": "2026-09-01",
 
   // A purely static site: no server code, just the built files in dist/.
