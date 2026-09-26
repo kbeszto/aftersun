@@ -137,7 +137,15 @@ redeploy on every `git push`:
 - **Build command:** `npm run build`
 - **Output directory:** `dist`
 
-This repo is set up for Cloudflare Pages: `src/site.config.ts` and
-`public/robots.txt` point at `https://kobepickled.pages.dev`, and `.nvmrc` pins
-the build to Node 24. If you later add a custom domain, change the URL in
-both of those files.
+This repo deploys to Cloudflare. `wrangler.jsonc` names the project
+(`kobepickled`) and points it at `dist/`; `.nvmrc` pins the build to Node 24.
+
+The editing loop is entirely local — you never edit anything in the Cloudflare
+dashboard:
+
+```
+edit a .md file  ->  git commit  ->  git push  ->  Cloudflare rebuilds
+```
+
+If you add a custom domain, update `url` in `src/site.config.ts` and the
+`Sitemap:` line in `public/robots.txt` to match.

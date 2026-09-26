@@ -1,0 +1,14 @@
+{
+  // The deployed project's name — this is what sets the *.workers.dev
+  // subdomain. Change it here, push, and Cloudflare deploys under the new
+  // name (the old one stays until you delete it in the dashboard).
+  "name": "kobepickled",
+  "compatibility_date": "2026-09-01",
+
+  // A purely static site: no server code, just the built files in dist/.
+  "assets": {
+    "directory": "./dist",
+    // Serve our own dist/404.html for unknown URLs.
+    "not_found_handling": "404-page"
+  }
+}
