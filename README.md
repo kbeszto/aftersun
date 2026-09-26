@@ -138,6 +138,6 @@ redeploy on every `git push`:
 - **Output directory:** `dist`
 
 This repo is set up for Cloudflare Pages: `src/site.config.ts` and
-`public/robots.txt` point at `https://aftersun.pages.dev`, and `.nvmrc` pins
+`public/robots.txt` point at `https://kobepickled.pages.dev`, and `.nvmrc` pins
 the build to Node 24. If you later add a custom domain, change the URL in
 both of those files.

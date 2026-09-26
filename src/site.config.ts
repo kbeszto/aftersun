@@ -4,8 +4,8 @@
  */
 export const SITE = {
   /** Used for RSS, sitemap and canonical links. Change this if you add a custom domain. */
-  url: 'https://aftersun.pages.dev',
-  title: 'Kobe Szeto',
+  url: 'https://kobepickled.pages.dev',
+  title: 'kobepickled',
   /** Shown under the title on the homepage. */
   tagline: 'Thoughts, things I watched, things I listened to, things I saw.',
   description: 'A personal log: thoughts, film and TV notes, music, photos.',
