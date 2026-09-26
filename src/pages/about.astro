@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site.config';
+---
+
+<Base title="About" description={`About ${SITE.author}`}>
+  <div class="wrap">
+    <h1>About</h1>
+    <div class="prose">
+      <p>
+        Hi — I'm {SITE.author}. This is where I keep notes on what I watch, listen to and
+        think about, mostly so I can find them again later.
+      </p>
+      <p>
+        You can subscribe by <a href="/rss.xml">RSS</a>, or browse <a href="/tags/">by tag</a>.
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .prose {
+    margin-top: var(--space-6);
+  }
+</style>

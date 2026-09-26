@@ -1,0 +1,9 @@
+dist/
+node_modules/
+.astro/
+.DS_Store
+npm-debug.log*
+.env
+.env.production
+.vercel
+.netlify

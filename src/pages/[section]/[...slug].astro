@@ -1,0 +1,41 @@
+---
+import { render } from 'astro:content';
+import EntryLayout from '../../layouts/Entry.astro';
+import PhotoGrid from '../../components/PhotoGrid.astro';
+import { SECTIONS } from '../../lib/sections';
+import { getSectionItems, type FeedItem } from '../../lib/posts';
+
+/**
+ * One route for every entry in every section: /movies/dune-part-two/,
+ * /thoughts/on-mondays/, and so on. Add a section in lib/sections.ts and
+ * its pages appear here for free.
+ */
+export async function getStaticPaths() {
+  const groups = await Promise.all(SECTIONS.map((section) => getSectionItems(section.id)));
+  return groups.flat().map((item) => ({
+    params: { section: item.section.slug, slug: item.id },
+    props: { item },
+  }));
+}
+
+interface Props {
+  item: FeedItem;
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item.entry);
+const photos = item.entry.data.images ?? [];
+---
+
+<EntryLayout
+  title={item.title}
+  date={item.date}
+  section={item.section}
+  summary={item.summary}
+  meta={item.meta}
+  rating={item.rating}
+  tags={item.tags}
+>
+  <Content />
+  <PhotoGrid slot="wide" images={photos} />
+</EntryLayout>

@@ -1,0 +1,35 @@
+---
+import { SITE } from '../site.config';
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrap row">
+    <span>© {year} {SITE.author}</span>
+    <span class="links">
+      {SITE.links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-block: var(--space-6);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: space-between;
+  }
+
+  .links {
+    display: flex;
+    gap: var(--space-4);
+  }
+</style>

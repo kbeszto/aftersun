@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getAllTags } from '../../lib/posts';
+
+const tags = await getAllTags();
+---
+
+<Base title="Tags" description="Everything, by tag.">
+  <div class="wrap">
+    <h1>Tags</h1>
+    {
+      tags.length > 0 ? (
+        <ul class="cloud">
+          {tags.map(({ tag, count }) => (
+            <li>
+              <a href={`/tags/${tag}/`}>#{tag}</a> <span class="meta">{count}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="meta">No tags yet.</p>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  .cloud {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-8);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import EntryList from '../../components/EntryList.astro';
+import { SECTIONS, type Section } from '../../lib/sections';
+import { getSectionItems, type FeedItem } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  return Promise.all(
+    SECTIONS.map(async (section) => ({
+      params: { section: section.slug },
+      props: { section, items: await getSectionItems(section.id) },
+    })),
+  );
+}
+
+interface Props {
+  section: Section;
+  items: FeedItem[];
+}
+
+const { section, items } = Astro.props;
+---
+
+<Base title={section.label} description={section.blurb}>
+  <div class="wrap">
+    <header class="head">
+      <h1>{section.label}</h1>
+      <p class="blurb">{section.blurb}</p>
+      <p class="meta count">{items.length} {items.length === 1 ? 'entry' : 'entries'}</p>
+    </header>
+
+    {
+      items.length > 0 ? (
+        <EntryList items={items} />
+      ) : (
+        <p class="meta">Nothing here yet.</p>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  .head {
+    max-width: var(--measure);
+    padding-bottom: var(--space-8);
+  }
+
+  .blurb {
+    color: var(--text-muted);
+    margin: var(--space-3) 0 0;
+  }
+
+  .count {
+    margin: var(--space-4) 0 0;
+  }
+</style>

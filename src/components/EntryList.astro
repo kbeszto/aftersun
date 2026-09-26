@@ -1,0 +1,101 @@
+---
+import type { FeedItem } from '../lib/posts';
+import { formatShortDate } from '../lib/format';
+import Rating from './Rating.astro';
+
+interface Props {
+  items: FeedItem[];
+  /** Show which section each entry belongs to (for mixed lists like the homepage). */
+  showSection?: boolean;
+}
+const { items, showSection = false } = Astro.props;
+---
+
+<ul class="list">
+  {
+    items.map((item) => (
+      <li>
+        <a class="plain row" href={item.href}>
+          <time class="meta date" datetime={item.date.toISOString()}>
+            {formatShortDate(item.date)}
+          </time>
+          <span class="body">
+            <span class="title">
+              {showSection && <span class="tag">{item.section.label}</span>}
+              {item.title}
+            </span>
+            {item.meta && <span class="meta">{item.meta}</span>}
+            {item.summary && <span class="summary">{item.summary}</span>}
+          </span>
+          {item.rating !== undefined && <Rating class="stars" value={item.rating} />}
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li + li {
+    border-top: 1px solid var(--rule);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr auto;
+    gap: var(--space-4);
+    align-items: baseline;
+    padding-block: var(--space-4);
+  }
+
+  .date {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .title {
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .row:hover .title {
+    color: var(--accent);
+  }
+
+  .tag {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    margin-right: var(--space-2);
+  }
+
+  .summary {
+    color: var(--text-muted);
+  }
+
+  .stars {
+    align-self: center;
+  }
+
+  @media (max-width: 34rem) {
+    .row {
+      grid-template-columns: 1fr auto;
+    }
+    .date {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

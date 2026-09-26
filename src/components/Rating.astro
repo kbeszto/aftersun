@@ -1,0 +1,40 @@
+---
+/**
+ * Star rating out of 5. Halves (or any fraction) work — the filled layer is
+ * simply clipped to a percentage width.
+ */
+interface Props {
+  value: number;
+  class?: string;
+}
+const { value, class: className } = Astro.props;
+const pct = Math.max(0, Math.min(5, value)) * 20;
+const label = `${value} out of 5`;
+---
+
+<span class:list={['rating', className]} role="img" aria-label={label}>
+  <span class="track" aria-hidden="true">★★★★★</span>
+  <span class="fill" style={`width:${pct}%`} aria-hidden="true">★★★★★</span>
+</span>
+
+<style>
+  .rating {
+    position: relative;
+    display: inline-block;
+    font-size: 0.9em;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .track {
+    color: var(--rule);
+  }
+
+  .fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    overflow: hidden;
+    color: var(--star);
+  }
+</style>

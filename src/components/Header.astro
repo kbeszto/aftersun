@@ -1,0 +1,82 @@
+---
+import { SITE } from '../site.config';
+import { NAV } from '../lib/sections';
+import ThemeToggle from './ThemeToggle.astro';
+
+const path = Astro.url.pathname;
+const isActive = (slug: string) => path === `/${slug}/` || path.startsWith(`/${slug}/`);
+---
+
+<header>
+  <div class="wrap bar">
+    <a class="plain name" href="/">{SITE.title}</a>
+    <nav aria-label="Sections">
+      {
+        NAV.map((section) => (
+          <a
+            class="plain"
+            href={`/${section.slug}/`}
+            aria-current={isActive(section.slug) ? 'page' : undefined}
+          >
+            {section.label}
+          </a>
+        ))
+      }
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+
+<style>
+  header {
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding-block: var(--space-4);
+  }
+
+  .name {
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-right: auto;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+
+  nav a {
+    color: var(--text-muted);
+  }
+
+  nav a[aria-current='page'] {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 34rem) {
+    .bar {
+      gap: var(--space-3);
+      row-gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+    nav {
+      order: 3;
+      width: 100%;
+      margin-right: 0;
+    }
+    .name {
+      margin-right: auto;
+    }
+  }
+</style>

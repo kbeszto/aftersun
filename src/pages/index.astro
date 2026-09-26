@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import EntryList from '../components/EntryList.astro';
+import { SITE } from '../site.config';
+import { getAllItems } from '../lib/posts';
+
+const items = (await getAllItems()).slice(0, 40);
+---
+
+<Base>
+  <div class="wrap">
+    <section class="intro">
+      <h1>{SITE.title}</h1>
+      <p class="tagline">{SITE.tagline}</p>
+    </section>
+
+    <h2 class="eyebrow section-heading">Recently</h2>
+    <EntryList items={items} showSection />
+  </div>
+</Base>
+
+<style>
+  .intro {
+    max-width: var(--measure);
+    padding-bottom: var(--space-12);
+  }
+
+  .tagline {
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+    margin: var(--space-4) 0 0;
+    text-wrap: pretty;
+  }
+
+  .section-heading {
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+</style>

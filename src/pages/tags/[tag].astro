@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import EntryList from '../../components/EntryList.astro';
+import { getAllItems, getAllTags, type FeedItem } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const items = await getAllItems();
+  const tags = await getAllTags();
+  return tags.map(({ tag }) => ({
+    params: { tag },
+    props: { tag, items: items.filter((item) => item.tags.includes(tag)) },
+  }));
+}
+
+interface Props {
+  tag: string;
+  items: FeedItem[];
+}
+
+const { tag, items } = Astro.props;
+---
+
+<Base title={`#${tag}`} description={`Entries tagged ${tag}`}>
+  <div class="wrap">
+    <h1>#{tag}</h1>
+    <p class="meta count">{items.length} {items.length === 1 ? 'entry' : 'entries'}</p>
+    <EntryList items={items} showSection />
+  </div>
+</Base>
+
+<style>
+  .count {
+    margin: var(--space-4) 0 var(--space-8);
+  }
+</style>

@@ -1,0 +1,82 @@
+/* ==========================================================================
+   THEME — this is the file to edit when you want the site to look different.
+   Everything else in the CSS refers to these variables. Change a value here
+   and it changes everywhere.
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* ---------- Typography ---------- */
+  --font-body: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, ui-serif, serif;
+  --font-ui: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --text-sm: 0.8125rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.6rem;
+  --text-2xl: 2.1rem;
+  --leading: 1.65;
+  --tracking-tight: -0.011em;
+
+  /* How wide a line of prose gets. The single most impactful knob here. */
+  --measure: 34rem;
+  /* How wide the page content gets (lists, headers, photo grids). */
+  --page: 44rem;
+
+  /* ---------- Spacing ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --radius: 4px;
+
+  /* ---------- Colour: light ---------- */
+  --bg: #fbfaf7;
+  --bg-raised: #ffffff;
+  --bg-sunken: #f2efe9;
+  --text: #1f1d1a;
+  --text-muted: #6d675e;
+  --rule: #e3dfd6;
+  --accent: #9a4629;
+  --accent-hover: #7c3720;
+  --star: #b6802c;
+  --shadow: 0 1px 2px rgb(31 29 26 / 0.05);
+}
+
+/* ---------- Colour: dark ----------
+   Applied when the OS asks for dark, unless the reader has chosen light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #131211;
+    --bg-raised: #1b1a18;
+    --bg-sunken: #0d0c0c;
+    --text: #e9e4db;
+    --text-muted: #9a938a;
+    --rule: #2e2c29;
+    --accent: #e39c74;
+    --accent-hover: #f0b28e;
+    --star: #d6a45e;
+    --shadow: none;
+  }
+}
+
+/* ...and when the reader explicitly picks dark. */
+:root[data-theme='dark'] {
+  --bg: #131211;
+  --bg-raised: #1b1a18;
+  --bg-sunken: #0d0c0c;
+  --text: #e9e4db;
+  --text-muted: #9a938a;
+  --rule: #2e2c29;
+  --accent: #e39c74;
+  --accent-hover: #f0b28e;
+  --star: #d6a45e;
+  --shadow: none;
+}

@@ -1,0 +1,87 @@
+---
+import Base from './Base.astro';
+import Rating from '../components/Rating.astro';
+import { formatDate } from '../lib/format';
+import type { Section } from '../lib/sections';
+
+interface Props {
+  title: string;
+  date: Date;
+  section: Section;
+  summary?: string;
+  meta?: string;
+  rating?: number;
+  tags?: string[];
+}
+
+const { title, date, section, summary, meta, rating, tags = [] } = Astro.props;
+---
+
+<Base title={title} description={summary}>
+  <article class="wrap">
+    <p class="eyebrow">
+      <a class="plain" href={`/${section.slug}/`}>{section.label}</a>
+    </p>
+
+    <h1>{title}</h1>
+
+    <p class="byline meta">
+      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      {meta && <span>· {meta}</span>}
+      {rating !== undefined && <Rating value={rating} />}
+    </p>
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    {/* Anything that should run wider than the text column — photo grids, etc. */}
+    <slot name="wide" />
+
+    {
+      tags.length > 0 && (
+        <p class="tags meta">
+          {tags.map((tag) => (
+            <a href={`/tags/${tag}/`}>#{tag}</a>
+          ))}
+        </p>
+      )
+    }
+  </article>
+</Base>
+
+<style>
+  h1 {
+    margin-top: var(--space-2);
+    max-width: var(--measure);
+  }
+
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .prose {
+    margin-top: var(--space-8);
+  }
+
+  /* The prose column is capped at --measure for readability; images get the
+     full page width, which is what --page is for. */
+  article :global(.wide) {
+    max-width: var(--page);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-12);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--rule);
+  }
+</style>

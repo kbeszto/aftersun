@@ -1,0 +1,93 @@
+---
+/**
+ * Light/dark switch. The *initial* theme is set by the inline script in
+ * Base.astro (before first paint, so there's no flash); this button only
+ * flips it afterwards.
+ */
+---
+
+<button id="theme-toggle" type="button" aria-label="Switch between light and dark">
+  <svg class="sun" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.5" fill="currentColor" />
+    <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8" />
+    </g>
+  </svg>
+  <svg class="moon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+
+<style>
+  button {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    background: var(--bg-raised);
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+
+  button:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  svg {
+    grid-area: 1 / 1;
+  }
+
+  /* Show the icon for the theme you'd switch *to*. Default page is light,
+     so that's the moon. */
+  .sun {
+    display: none;
+  }
+  .moon {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .sun {
+      display: block;
+    }
+    :global(:root:not([data-theme='light'])) .moon {
+      display: none;
+    }
+  }
+
+  :global(:root[data-theme='dark']) .sun {
+    display: block;
+  }
+  :global(:root[data-theme='dark']) .moon {
+    display: none;
+  }
+  :global(:root[data-theme='light']) .sun {
+    display: none;
+  }
+  :global(:root[data-theme='light']) .moon {
+    display: block;
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const prefersDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const current = root.dataset.theme ?? (prefersDark() ? 'dark' : 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* private browsing — the choice just won't persist */
+    }
+  });
+</script>
