@@ -3,8 +3,8 @@
  * Changing these values updates the whole site — nav, titles, RSS, footer.
  */
 export const SITE = {
-  /** Used for RSS + sitemap. Update this when you pick a real domain. */
-  url: 'https://kbeszto.github.io',
+  /** Used for RSS, sitemap and canonical links. Change this if you add a custom domain. */
+  url: 'https://aftersun.pages.dev',
   title: 'Kobe Szeto',
   /** Shown under the title on the homepage. */
   tagline: 'Thoughts, things I watched, things I listened to, things I saw.',

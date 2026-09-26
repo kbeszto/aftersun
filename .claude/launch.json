@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "blog",
+      "name": "aftersun",
       "runtimeExecutable": "/Users/kobeszeto/.local/node/bin/node",
       "runtimeArgs": ["node_modules/astro/bin/astro.mjs", "dev"],
       "port": 4321

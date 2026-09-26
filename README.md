@@ -137,6 +137,7 @@ redeploy on every `git push`:
 - **Build command:** `npm run build`
 - **Output directory:** `dist`
 
-Then set `url` in `src/site.config.ts` to the real domain (it's used for RSS,
-the sitemap and canonical links) and update the `Sitemap:` line in
-`public/robots.txt`.
+This repo is set up for Cloudflare Pages: `src/site.config.ts` and
+`public/robots.txt` point at `https://aftersun.pages.dev`, and `.nvmrc` pins
+the build to Node 24. If you later add a custom domain, change the URL in
+both of those files.
