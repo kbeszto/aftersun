@@ -6,11 +6,11 @@
  * src/content/, and an entry here. Routing, nav, the homepage feed and
  * RSS all pick it up automatically.
  */
-export type SectionId = 'thoughts' | 'movies' | 'tv' | 'music' | 'photos';
+export type SectionId = 'thoughts' | 'films' | 'tv' | 'music' | 'photos';
 
 export interface Section {
   id: SectionId;
-  /** URL segment, e.g. /movies */
+  /** URL segment, e.g. /films */
   slug: string;
   /** Plural label, used in nav and index pages. */
   label: string;
@@ -22,6 +22,8 @@ export interface Section {
   inNav: boolean;
 }
 
+// Changing sections requires updating the `SectionId` type above, and adding a collection in content.config.ts and a folder in src/content/.
+
 export const SECTIONS: Section[] = [
   {
     id: 'thoughts',
@@ -32,10 +34,10 @@ export const SECTIONS: Section[] = [
     inNav: true,
   },
   {
-    id: 'movies',
-    slug: 'movies',
-    label: 'Movies',
-    singular: 'Movie',
+    id: 'films',
+    slug: 'films',
+    label: 'Films',
+    singular: 'Film',
     blurb: 'Films I watched, and what I made of them.',
     inNav: true,
   },

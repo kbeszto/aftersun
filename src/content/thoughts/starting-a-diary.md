@@ -23,4 +23,4 @@ in a folder. No login, no dashboard, no editor that takes four seconds to load.
 - Photos, unedited, mostly of nothing
 - And, maybe more to come
 
-If it turns out I only ever use the movies section, that's fine too.
+If it turns out I only ever use the films section, that's fine too.

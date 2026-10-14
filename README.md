@@ -18,7 +18,7 @@ npm run check    # type-check content frontmatter and components
 Create a Markdown file in the right folder. The filename becomes the URL.
 
 ```
-src/content/movies/heat.md   ->   /movies/heat/
+src/content/films/heat.md   ->   /films/heat/
 ```
 
 ```markdown
@@ -46,7 +46,7 @@ in `npm run dev` so you can see them while writing.
 | Section    | Extra fields |
 |------------|--------------|
 | `thoughts` | — |
-| `movies`   | `year`, `director`, `rating` (0–5, halves ok), `rewatch` |
+| `films`    | `year`, `director`, `rating` (0–5, halves ok), `rewatch` |
 | `tv`       | `year`, `creator`, `season`, `rating`, `status` (`watching` / `finished` / `abandoned`) |
 | `music`    | `artist`, `year`, `rating`, `format` |
 | `photos`   | `location`, `images[]` |
@@ -98,9 +98,14 @@ links, stars and hover states everywhere. `--measure` (prose line width) and
 
 Say you want `/books`:
 
-1. Add a `books` collection in `src/content.config.ts` (copy the `movies` one).
+1. Add a `books` collection in `src/content.config.ts` (copy the `films` one).
 2. Add an entry to `SECTIONS` in `src/lib/sections.ts`.
 3. Create `src/content/books/` and write a Markdown file.
+
+A section's name has to match in all three places — the key in `collections`,
+the `id` in `SECTIONS`, and the folder name. Renaming a section means changing
+all three, or `npm run check` fails with "not assignable to keyof
+DataEntryMap".
 
 Routing, nav, the homepage feed, tags and RSS all pick it up automatically —
 there are no per-section page files to write.
@@ -112,7 +117,7 @@ src/
   site.config.ts      you, the site title, links
   content.config.ts   what fields each section allows
   content/            ← your writing lives here
-    thoughts/ movies/ tv/ music/ photos/
+    thoughts/ films/ tv/ music/ photos/
   lib/
     sections.ts       the list of sections
     posts.ts          turns collections into one uniform feed

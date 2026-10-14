@@ -28,7 +28,7 @@ export interface FeedItem {
 function metaLine(sectionId: SectionId, data: any): string | undefined {
   const parts: (string | undefined)[] = [];
   switch (sectionId) {
-    case 'movies':
+    case 'films':
       parts.push(data.director ? `Dir. ${data.director}` : undefined, data.year?.toString());
       break;
     case 'tv':

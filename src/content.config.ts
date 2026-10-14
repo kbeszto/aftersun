@@ -30,8 +30,8 @@ const thoughts = defineCollection({
   schema: z.object({ ...base }),
 });
 
-const movies = defineCollection({
-  loader: md('movies'),
+const films = defineCollection({
+  loader: md('films'),
   schema: z.object({
     ...base,
     /** Release year of the film. */
@@ -90,4 +90,4 @@ const photos = defineCollection({
     }),
 });
 
-export const collections = { thoughts, movies, tv, music, photos };
+export const collections = { thoughts, films, tv, music, photos };
