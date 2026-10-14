@@ -9,7 +9,9 @@ tags: [rewatch-worthy, captivating, dialogue]
 ---
 <details>
   <summary>Synposis:</summary>  
+  
   > Marie-Lou Fontaine, director of a nursing home in the Paris suburbs, defies convention by adopting the ‘Humanitude’ method despite her team’s resistance. Her encounter with Mari Morisaki, a terminally ill Japanese playwright, transforms her life. Together, they turn the facility into a symbol of resistance and humanity against the system’s limits.
+  
 </details>
 
 *All of a Sudden (2026)* is a masterfully crafted, dialogue-forward film that tackles the ineffable feeling of humanity. 
